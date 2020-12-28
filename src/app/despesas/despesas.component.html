@@ -1,0 +1,166 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Despesas</h4>
+            <p class="card-category">Cadastrar</p>
+          </div>
+          <div class="card-body">
+            <form #formDespesa="ngForm" (ngSubmit)="cadastrar()">
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Fonte</mat-label>
+                    <mat-select
+                      matNativeControl
+                      required
+                      [(ngModel)]="despesa.fonte"
+                      placeholder="Fonte"
+                      name="fonte"
+                    >
+                      <mat-option value="1">DINHEIRO</mat-option>
+                      <mat-option value="2">DEPOSITO</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Date</mat-label>
+                    <input
+                      [value]="data.value"
+                      matInput
+                      [matDatepicker]="myPicker"
+                      placeholder="date"
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="myPicker"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #myPicker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Destinado</mat-label>
+                    <mat-select
+                      matInput
+                      [(ngModel)]="despesa.destinado"
+                      placeholder="Destinado"
+                      name="destinado"
+                    >
+                      <mat-option value="1"> Pessoal </mat-option>
+                      <mat-option value="2"> Escritorio </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Pago para</mat-label>
+                    <mat-select
+                      required
+                      [(ngModel)]="despesa.pagoPara"
+                      placeholder="Pago para"
+                      name="pagoa"
+                    >
+                      <mat-option
+                        *ngFor="let pessoa of pessoas"
+                        [value]="pessoa.id"
+                      >
+                        {{ pessoa.nome }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Centro de Custo</mat-label>
+                    <mat-select
+                      matInput
+                      [(ngModel)]="despesa.centroCusto"
+                      placeholder="Centro de Custo"
+                      name="centroCusto"
+                    >
+                      <mat-option *ngFor="let c of cc" [value]="c.id">
+                        {{ c.descricao }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      [(ngModel)]="despesa.valor"
+                      placeholder="Valor"
+                      name="valor"
+                      type="Number"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <button
+                mat-raised-button
+                type="submit"
+                class="btn btn-danger pull-right"
+              >
+                Cadastrar
+              </button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-info">
+            <h4 class="card-title">Despesas</h4>
+            <p class="card-category">Cadastradas</p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-primary">
+                  <th>Fonte</th>
+                  <th>Data</th>
+                  <th>Pago para</th>
+                  <th>Valor</th>
+                  <th>Apagar</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let desp of despesas">
+                    <td>
+                      <div *ngIf="desp.fonte == 1" class="icones-fonte">
+                        <i class="material-icons">payments</i>
+                        <span>dinheiro</span>
+                      </div>
+                      <div class="icones-fonte" *ngIf="desp.fonte == 2">
+                        <i class="material-icons">account_balance</i>
+                        <span>banco</span>
+                      </div>
+                    </td>
+
+                    <td>{{ desp.data }}</td>
+                    <td>{{ desp.pagoa.nome }}</td>
+                    <td>{{ desp.valor | currency: "R$" }}</td>
+                    <td class="alinha-centro">
+                      <button
+                        class="btn btn-danger pull-right"
+                        (click)="apagar(desp.id)"
+                      >
+                        <i class="material-icons">delete</i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

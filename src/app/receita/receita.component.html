@@ -1,0 +1,195 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-success">
+            <h4 class="card-title">Receitas</h4>
+            <p class="card-category">Cadastrar</p>
+          </div>
+          <div class="card-body">
+            <form #formReceita="ngForm" (ngSubmit)="cadastrar()">
+              <div class="row">
+                <div class="col-md-2">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Date</mat-label>
+                    <input
+                      [value]="data.value"
+                      matInput
+                      [matDatepicker]="myPicker"
+                      placeholder="date"
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="myPicker"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #myPicker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Fonte</mat-label>
+                    <mat-select
+                      matNativeControl
+                      required
+                      [(ngModel)]="receita.fonte"
+                      placeholder="Fonte"
+                      name="fonte"
+                    >
+                      <mat-option value="1">DINHEIRO</mat-option>
+                      <mat-option value="2">DEPOSITO</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Servico</mat-label>
+                    <mat-select
+                      required
+                      [(ngModel)]="receita.servicoId"
+                      placeholder="Servico"
+                      name="Servico"
+                    >
+                      <mat-option
+                        *ngFor="let servico of servicos"
+                        [value]="servico.id"
+                      >
+                        {{ servico.descricao }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      [(ngModel)]="receita.ano"
+                      placeholder="Ano"
+                      name="ano"
+                      type="Number"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Mês</mat-label>
+                    <mat-select
+                      matInput
+                      [(ngModel)]="receita.mes"
+                      placeholder="Mês"
+                      name="Mes"
+                      type="Number"
+                    >
+                      <mat-option value="1"> Janeiro </mat-option>
+                      <mat-option value="2"> Fevereiro </mat-option>
+                      <mat-option value="3"> Março </mat-option>
+                      <mat-option value="4"> Abril </mat-option>
+                      <mat-option value="5"> Maio </mat-option>
+                      <mat-option value="6"> Junho </mat-option>
+                      <mat-option value="7"> Julho </mat-option>
+                      <mat-option value="8"> Agosto </mat-option>
+                      <mat-option value="9"> Setembro </mat-option>
+                      <mat-option value="10"> Outubro </mat-option>
+                      <mat-option value="11"> Novembro </mat-option>
+                      <mat-option value="12"> Dezembro </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Cliente</mat-label>
+                    <mat-select
+                      matInput
+                      [(ngModel)]="receita.clienteId"
+                      placeholder="Cliente"
+                      name="cliente"
+                    >
+                      <mat-option
+                        *ngFor="let cliente of pessoas"
+                        [value]="cliente.id"
+                      >
+                        {{ cliente.nome }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      [(ngModel)]="receita.valor"
+                      placeholder="Valor"
+                      name="valor"
+                      type="Number"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <button
+                mat-raised-button
+                type="submit"
+                class="btn btn-success pull-right"
+              >
+                Cadastrar
+              </button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-info">
+            <h4 class="card-title">Receitas</h4>
+            <p class="card-category">Cadastradas</p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-primary">
+                  <th>Fonte</th>
+                  <th>Cliente</th>
+                  <th>Servico</th>
+                  <th>Mes - Ano</th>
+                  <th>Valor</th>
+                  <th>Apagar</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let receita of receitas">
+                    <td>
+                      <div *ngIf="receita.fonte == 1" class="icones-fonte">
+                        <i class="material-icons">payments</i>
+                        <span>dinheiro</span>
+                      </div>
+                      <div class="icones-fonte" *ngIf="receita.fonte == 2">
+                        <i class="material-icons">account_balance</i>
+                        <span>banco</span>
+                      </div>
+                    </td>
+
+                    <td>{{ receita.cliente.nome }}</td>
+                    <td>{{ receita.servico.descricao }}</td>
+                    <td>{{ nomeMeses[receita.mes - 1] + " de " + receita.ano }}</td>
+                    <td>{{ receita.valor | currency: "R$" }}</td>
+                    <td class="alinha-centro">
+                      <button
+                        class="btn btn-danger pull-right"
+                        (click)="apagar(receita.id)"
+                      >
+                        <i class="material-icons">delete</i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

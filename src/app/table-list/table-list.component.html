@@ -1,0 +1,34 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-info">
+            <h4 class="card-title">Pessoas</h4>
+            <p class="card-category">Cadastradas</p>
+          </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class="text-primary">
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>CPF</th>
+                    <th>CNPJ</th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let pessoa of pessoas ">
+                      <td>{{ pessoa.nome }}</td>
+                      <td>{{ pessoa.telefone }}</td>
+                      <td>{{ pessoa.cpf }}</td>
+                      <td>{{ pessoa.cnpj }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

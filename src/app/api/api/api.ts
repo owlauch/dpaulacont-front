@@ -1,0 +1,13 @@
+export * from './centroDeCusto.service';
+import { CentroDeCustoService } from './centroDeCusto.service';
+export * from './despesas.service';
+import { DespesasService } from './despesas.service';
+export * from './pessoas.service';
+import { PessoasService } from './pessoas.service';
+export * from './recebiveis.service';
+import { RecebiveisService } from './recebiveis.service';
+export * from './receitas.service';
+import { ReceitasService } from './receitas.service';
+export * from './servicos.service';
+import { ServicosService } from './servicos.service';
+export const APIS = [CentroDeCustoService, DespesasService, PessoasService, RecebiveisService, ReceitasService, ServicosService];

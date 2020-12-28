@@ -1,0 +1,165 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-10">
+        <div class="card">
+          <div class="card-header card-header-success">
+            <h4 class="card-title">Pessoa</h4>
+            <p class="card-category">Cadastro</p>
+          </div>
+          <div class="card-body">
+            <form #formPessoa="ngForm" (ngSubmit)="cadastrar()">
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      [(ngModel)]="pessoa.nome"
+                      placeholder="Nome"
+                      name="Nome"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      [(ngModel)]="pessoa.email"
+                      placeholder="E-mail"
+                      type="email"
+                      name="email"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Telefone"
+                      [(ngModel)]="pessoa.telefone"
+                      name="telefone"
+                      type="text"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Banco"
+                      [(ngModel)]="pessoa.banco"
+                      name="banco"
+                      type="text"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Agencia"
+                      [(ngModel)]="pessoa.agencia"
+                      name="agencia"
+                      type="text"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="conta"
+                      [(ngModel)]="pessoa.conta"
+                      name="conta"
+                      type="text"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="CPF"
+                      [(ngModel)]="pessoa.cpf"
+                      name="cpf"
+                      type="text"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="CNPJ"
+                      [(ngModel)]="pessoa.cnpj"
+                      name="cnpj"
+                      type="text"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Titulo"
+                      [(ngModel)]="pessoa.titulo"
+                      name="titulo"
+                      type="text"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Senha simples"
+                      [(ngModel)]="pessoa.senhaSimples"
+                      name="simples"
+                      type="text"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Senha certificado"
+                      [(ngModel)]="pessoa.senhaCertificado"
+                      name="scert"
+                      type="text"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Senha NFS"
+                      [(ngModel)]="pessoa.senhaNfs"
+                      name="sNFS"
+                      type="text"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <button
+                mat-raised-button
+                type="submit"
+                class="btn btn-success pull-right"
+              >
+                Cadastrar
+              </button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
