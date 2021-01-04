@@ -23,6 +23,7 @@ export class UserProfileComponent implements OnInit {
     senhaNfs: '',
     senhaSimples: '',
     telefone: '',
+    clienteMensal: false,
     titulo: '',
   };
   constructor(private pessoaSer: PessoasService) {

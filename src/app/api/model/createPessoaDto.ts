@@ -21,6 +21,7 @@ export interface CreatePessoaDto {
     titulo: string;
     cnpj: string;
     cpf: string;
+    clienteMensal: boolean;
     senhaSimples: string;
     senhaCertificado: string;
     senhaNfs: string;

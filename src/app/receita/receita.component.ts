@@ -71,6 +71,7 @@ export class ReceitaComponent implements OnInit {
   }
   cadastrar() {
     this.receita.data = this.data.value;
+    this.receita.pago = true;
     this.receitaService
       .receitasControllerCreate(this.receita)
       .subscribe((x) => {
@@ -87,4 +88,5 @@ export class Receita {
   mes;
   servicoId;
   valor;
+  pago;
 }

@@ -20,6 +20,7 @@ import { ReceitaComponent } from 'app/receita/receita.component';
 import { TypographyComponent } from 'app/servicos/typography.component';
 import { DespesasComponent } from 'app/despesas/despesas.component';
 import { RecebiveisModule } from 'app/recebiveis/recebiveis.module';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { RecebiveisModule } from 'app/recebiveis/recebiveis.module';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    RecebiveisModule
+    RecebiveisModule,
+    MatCheckboxModule
   ],
   declarations: [
     DashboardComponent,

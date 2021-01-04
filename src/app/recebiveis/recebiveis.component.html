@@ -10,13 +10,22 @@
           <div class="card-body">
             <form #formReceita="ngForm" (ngSubmit)="cadastrar()">
               <div class="row">
-                <div class="col-md-2">
-                  <mat-form-field>
-                    <input 
-                    matInput
-                    [(ngModel)] ="recebiveis.descricao"
-                    placeholder="Descricao"
-                    type="text">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Servico</mat-label>
+                    <mat-select
+                      required
+                      [(ngModel)]="recebiveis.servicoId"
+                      placeholder="Servico"
+                      name="Servico"
+                    >
+                      <mat-option
+                        *ngFor="let servico of servicos"
+                        [value]="servico.id"
+                      >
+                        {{ servico.descricao }}
+                      </mat-option>
+                    </mat-select>
                   </mat-form-field>
                 </div>
                 <div class="col-md-2">
@@ -28,6 +37,28 @@
                       name="ano"
                       type="Number"
                     />
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Date</mat-label>
+                    <input
+                      matInput
+                      [matDatepicker]="myPicker"
+                      [formControl]="data"
+                      placeholder="date"
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="myPicker"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker
+                      #myPicker
+                      startView="multi-year"
+                      (yearSelected)="chosenYearHandler($event)"
+                      (monthSelected)="chosenMonthHandler($event, myPicker)"
+                      panelClass="example-month-picker"
+                    ></mat-datepicker>
                   </mat-form-field>
                 </div>
                 <div class="col-md-2">
@@ -62,7 +93,7 @@
                     <mat-label>Cliente</mat-label>
                     <mat-select
                       matInput
-                      [(ngModel)]="recebiveis.credor"
+                      [(ngModel)]="recebiveis.clienteId"
                       placeholder="Cliente"
                       name="cliente"
                     >
@@ -117,7 +148,7 @@
                   <th>Apagar</th>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let receita of receitas">
+                  <!-- <tr *ngFor="let receita of receitas">
                     <td>
                       <div *ngIf="receita.fonte == 1" class="icones-fonte">
                         <i class="material-icons">payments</i>
@@ -141,7 +172,7 @@
                         <i class="material-icons">delete</i>
                       </button>
                     </td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
             </div>

@@ -19,8 +19,6 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ApiModule } from './api';
-import { DespesasComponent } from './despesas/despesas.component';
-
 @NgModule({
   imports: [
     ApiModule,

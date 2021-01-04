@@ -6,7 +6,6 @@ import { HttpClient } from '@angular/common/http';
 import { CentroDeCustoService } from './api/centroDeCusto.service';
 import { DespesasService } from './api/despesas.service';
 import { PessoasService } from './api/pessoas.service';
-import { RecebiveisService } from './api/recebiveis.service';
 import { ReceitasService } from './api/receitas.service';
 import { ServicosService } from './api/servicos.service';
 
@@ -18,7 +17,6 @@ import { ServicosService } from './api/servicos.service';
     CentroDeCustoService,
     DespesasService,
     PessoasService,
-    RecebiveisService,
     ReceitasService,
     ServicosService ]
 })
