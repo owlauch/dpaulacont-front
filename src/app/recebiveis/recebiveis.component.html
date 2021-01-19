@@ -140,39 +140,67 @@
             <div class="table-responsive">
               <table class="table">
                 <thead class="text-primary">
-                  <th>Fonte</th>
                   <th>Cliente</th>
                   <th>Servico</th>
                   <th>Mes - Ano</th>
-                  <th>Valor</th>
-                  <th>Apagar</th>
+                  <th>Total Divida</th>
+                  <th>Valor Pago</th>
+                  <th>Fonte</th>
+                  <th>Deletar</th>
+                  <th>Salvar</th>
                 </thead>
                 <tbody>
-                  <!-- <tr *ngFor="let receita of receitas">
-                    <td>
-                      <div *ngIf="receita.fonte == 1" class="icones-fonte">
-                        <i class="material-icons">payments</i>
-                        <span>dinheiro</span>
-                      </div>
-                      <div class="icones-fonte" *ngIf="receita.fonte == 2">
-                        <i class="material-icons">account_balance</i>
-                        <span>banco</span>
-                      </div>
-                    </td>
-
+                  <tr *ngFor="let receita of receitas">
                     <td>{{ receita.cliente.nome }}</td>
                     <td>{{ receita.servico.descricao }}</td>
-                    <td>{{ nomeMeses[receita.mes - 1] + " de " + receita.ano }}</td>
-                    <td>{{ receita.valor | currency: "R$" }}</td>
-                    <td class="alinha-centro">
-                      <button
-                        class="btn btn-danger pull-right"
-                        (click)="apagar(receita.id)"
-                      >
-                        <i class="material-icons">delete</i>
-                      </button>
+                    <td>
+                      {{ nomeMeses[receita.mes - 1] + " de " + receita.ano }}
                     </td>
-                  </tr> -->
+                    <td>{{ receita.valor | currency: "R$" }}</td>
+                    <td>
+                      R$<input
+                        type="number"
+                        [(ngModel)]="receita.valor_quitado"
+                      />
+                    </td>
+                    <td>
+                      <div class="col-md-4">
+                        <mat-form-field class="example-full-width">
+                          <mat-label>Fonte</mat-label>
+                          <mat-select
+                            matNativeControl
+                            required
+                            [(ngModel)]="receita.fonte"
+                            placeholder="Fonte"
+                            name="fonte"
+                          >
+                            <mat-option value="1">DINHEIRO</mat-option>
+                            <mat-option value="2">DEPOSITO</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="alinha-centro">
+                        <button
+                          class="btn btn-danger pull-right"
+                          (click)="apagar(receita.id)"
+                        >
+                          <i class="material-icons">delete</i>
+                        </button>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="alinha-centro">
+                        <button
+                          class="btn btn-success pull-right"
+                          (click)="pagar(receita)"
+                        >
+                          <i class="material-icons">save</i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>

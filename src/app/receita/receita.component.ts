@@ -89,4 +89,5 @@ export class Receita {
   servicoId;
   valor;
   pago;
+  valorQuitado;
 }

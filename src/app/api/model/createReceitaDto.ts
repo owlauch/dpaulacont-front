@@ -19,4 +19,5 @@ export interface CreateReceitaDto {
     mes: number;
     servicoId: number;
     pago: boolean;
+    valorQuitado: number;
 }

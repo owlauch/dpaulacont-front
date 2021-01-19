@@ -26,14 +26,28 @@ export class UserProfileComponent implements OnInit {
     clienteMensal: false,
     titulo: '',
   };
-  constructor(private pessoaSer: PessoasService) {
+  pessoas = [];
+  constructor(
+    private pessoaSer: PessoasService,
+    private pessoasServ: PessoasService
+  ) {
+    pessoasServ['basePath'] = '/api';
     pessoaSer['basePath'] = '/api';
   }
 
-  ngOnInit() {}
   cadastrar() {
     this.pessoaSer.pessoasControllerCreate(this.pessoa).subscribe((x) => {
       console.log(x);
+    });
+  }
+
+  ngOnInit() {
+    this.buscaPessoas();
+  }
+
+  buscaPessoas() {
+    this.pessoasServ.pessoasControllerFindAll().subscribe((x) => {
+      this.pessoas = x;
     });
   }
 }

@@ -16,6 +16,7 @@ import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
 import { Moment } from 'moment';
 import { Receita } from 'app/receita/receita.component';
+import Swal from 'sweetalert2';
 
 const moment = _moment;
 
@@ -49,6 +50,20 @@ export class RecebiveisComponent implements OnInit {
   servicos = [];
   receitas = [];
   recebiveis = new Receita();
+  nomeMeses = [
+    'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Augusto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Decembro',
+  ];
   constructor(
     private pessoasService: PessoasService,
     private servicosService: ServicosService,
@@ -65,7 +80,7 @@ export class RecebiveisComponent implements OnInit {
   }
 
   buscaReceitas() {
-    this.receitaService.receitasControllerFindAll().subscribe((x) => {
+    this.receitaService.receitasControllerRecebiveis().subscribe((x) => {
       this.receitas = x;
     });
   }
@@ -81,7 +96,21 @@ export class RecebiveisComponent implements OnInit {
       .subscribe((x) => (this.pessoas = x));
   }
 
-  cadastrar() {}
+  cadastrar() {
+    this.recebiveis.pago = false;
+    this.receitaService
+      .receitasControllerCreate(this.recebiveis)
+      .subscribe((x) => {
+        this.recebiveis = new Receita();
+        this.buscaReceitas();
+      });
+  }
+
+  pagar(recebivel) {
+    this.receitaService.receitasControllerUpdate(recebivel).subscribe((x) => {
+      this.buscaReceitas();
+    });
+  }
 
   chosenYearHandler(normalizedYear: Moment) {
     const ctrlValue = this.data.value;
@@ -97,5 +126,11 @@ export class RecebiveisComponent implements OnInit {
     ctrlValue.month(normalizedMonth.month());
     this.data.setValue(ctrlValue);
     datepicker.close();
+  }
+
+  apagar(id) {
+    this.receitaService.receitasControllerRemove(id).subscribe((x) => {
+      this.buscaReceitas();
+    });
   }
 }
