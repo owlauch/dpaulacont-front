@@ -2,12 +2,15 @@ const express = require("express");
 const app = express();
 const path = require("path");
 
-const proxy = require("http-proxy-middleware");
-var apiProxy = proxy.createProxyMiddleware("/api", {
-  target: "https://dpaulacont-back.herokuapp.com",
-});
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
-app.use(apiProxy);
+app.use(
+  "/api",
+  createProxyMiddleware({
+    target: "https://dpaulacont-back.herokuapp.com",
+    changeOrigin: true,
+  })
+);
 
 app.use(express.static(__dirname + "/dist"));
 
