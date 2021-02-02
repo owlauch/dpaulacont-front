@@ -9,6 +9,9 @@ app.use(
   createProxyMiddleware({
     target: "https://dpaulacont-back.herokuapp.com",
     changeOrigin: true,
+    pathRewrite: {
+      "^/api": "",
+    },
   })
 );
 
